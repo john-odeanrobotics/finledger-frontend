@@ -1,28 +1,41 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+    <div id="app">
+        <h1>Financial Ledger</h1>
+        <ul>
+            <li v-for="todo in todos" :key="todo.id">{{ todo.tag  }} {{ todo.memo }} </li>
+        </ul>
+    </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+    import axios from "axios";
+    const BaseUrl = "http://localhost:8080/api";
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+    name: 'App',
+    data() {
+        return {
+            todos: []
+        }
+    },
+    async created() {
+        try {
+            const res = await axios.get(`${BaseUrl}/ledger`);
+            this.todos = res.data;   
+        } catch (error) {
+            console.error(error)
+        }
+    }
 }
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 60px;
 }
 </style>
