@@ -2,7 +2,7 @@
     <div id="app">
         <h1>Financial Ledger</h1>
         <ul>
-            <li v-for="todo in todos" :key="todo.id">{{ todo.tag  }} {{ todo.memo }} </li>
+            <li v-for="ledger in ledgers" :key="ledger.id">{{ ledger.tag  }} {{ ledger.memo }} </li>
         </ul>
     </div>
 </template>
@@ -15,13 +15,13 @@ export default {
     name: 'App',
     data() {
         return {
-            todos: []
+            ledgers: []
         }
     },
     async created() {
         try {
             const res = await axios.get(`${BaseUrl}/ledger`);
-            this.todos = res.data;   
+            this.ledgers = res.data;   
         } catch (error) {
             console.error(error)
         }
