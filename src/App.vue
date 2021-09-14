@@ -2,12 +2,13 @@
     <div id="app">
         <h1>Financial Ledger</h1>
         <ul class="ledger_board">
-            <li>
+            <li class="firstline">
                 <div>날짜</div>
                 <div>태그</div>
                 <div>메모</div>
                 <div>수입</div>
                 <div>지출</div>
+                <div>아이디</div>
             </li>
             <li v-for="ledger in ledgers" :key="ledger.id" v-bind:style="ledger.isIncome ? 'background-color: rgba(255, 0, 0, 0.25);' : 'background-color: rgba(0, 0, 255, 0.25)'">
                 <Ledger v-bind:ledger="ledger"></Ledger>
@@ -59,27 +60,15 @@ export default {
     margin: auto;
     text-align: center;
 }
-.ledger_board li{
+.firstline,
+#ledger{
     display: flex;
     justify-content: center;
     border-bottom: 1px solid #000;
 }
-.ledger_board li div{
+.firstline div,
+#ledger div{
     padding: 10px 20px;
-}
-.ledger_board li div:nth-child(1){
-    flex: 1;
-}
-.ledger_board li div:nth-child(2){
-    flex: 1;
-}
-.ledger_board li div:nth-child(3){
-    flex: 1;
-}
-.ledger_board li div:nth-child(4){
-    flex: 1;
-}
-.ledger_board li div:nth-child(5){
     flex: 1;
 }
 p{

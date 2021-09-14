@@ -5,6 +5,7 @@
         <div>{{ledger.memo}}</div>
         <div><p v-if="ledger.isIncome">{{ledger.amount}}</p></div>
         <div><p v-if="!ledger.isIncome">{{ledger.amount}}</p></div>
+        <div>{{ledger.user.uid}}</div>
     </div>
 </template>
 
@@ -15,8 +16,4 @@ export default {
 </script>
 
 <style>
-#ledger{
-    display: flex;
-    justify-content: center;
-}
 </style>
