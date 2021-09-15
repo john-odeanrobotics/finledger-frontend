@@ -1,34 +1,16 @@
 <template>
     <div id="app">
-        <Nav></Nav>
-        <h1>Financial Ledger</h1>
-        <LedgerBoard v-bind:ledgers="ledgers"></LedgerBoard>
+        <Nav v-bind:ledgers="ledgers"/>
+        <router-view/>
     </div>
 </template>
 
 <script>
-import LedgerBoard from "./components/LedgerBoard.vue";
 import Nav from "./components/Nav.vue";
-import axios from "axios";
-const BaseUrl = "http://localhost:8080/api";
 
 export default {
     name: 'App',
-    data() {
-        return {
-            ledgers: []
-        }
-    },
-    async created() {
-        try {
-            const res = await axios.get(`${BaseUrl}/ledger`);
-            this.ledgers = res.data;   
-        } catch (error) {
-            console.error(error)
-        }
-    },
     components: {
-        LedgerBoard,
         Nav
     }
 }
@@ -46,7 +28,6 @@ body{
     text-align: center;
     color: #2c3e50;
     margin-top: 60px;
-    
 }
 .ledger_board{
     width: 70%;

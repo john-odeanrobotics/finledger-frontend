@@ -1,16 +1,16 @@
 import Vue from 'vue'
-import VueRouter from "vue-router";
 import VueSession from "vue-session";
 import App from './App.vue'
+import router from "./router/routes.js";
 var options = {
-  persist: true
+    persist: true
 }
 
-Vue.use(VueSession, options)
-Vue.use(VueRouter);
+Vue.use(VueSession, options);
 
 Vue.config.productionTip = false
 
 new Vue({
-  render: h => h(App),
+    router,
+    render: h => h(App),
 }).$mount('#app')
