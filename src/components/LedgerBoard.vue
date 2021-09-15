@@ -15,28 +15,14 @@
 </template>
 
 <script>
-import axios from "axios";
 import Ledger from "./Ledger.vue";
-const BaseUrl = "http://localhost:8080/api";
 
 export default {
     name: "LedgerBoard",
-    data() {
-        return {
-            ledgers: []
-        }
-    },
-    async created() {
-        try {
-            const res = await axios.get(`${BaseUrl}/ledger`);
-            this.ledgers = res.data;   
-        } catch (error) {
-            console.error(error)
-        }
-    },
     components: {
         Ledger
-    }
+    },
+    props: ["ledgers"]
 }
 </script>
 

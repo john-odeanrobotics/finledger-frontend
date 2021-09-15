@@ -1,8 +1,11 @@
 <template>
-    <nav></nav>
+    <nav>
+        <div></div>
+    </nav>
 </template>
 
 <script>
+
 export default {
 
 }
