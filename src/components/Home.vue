@@ -1,7 +1,5 @@
 <template>
     <div id="home">
-        <h1>Financial Ledger</h1>
-        {{ledgers}}
         <LedgerBoard/>
     </div>
 </template>

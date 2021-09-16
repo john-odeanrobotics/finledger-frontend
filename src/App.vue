@@ -1,6 +1,7 @@
 <template>
     <div id="app">
-        <Nav v-bind:ledgers="ledgers"/>
+        <Nav/>
+        <h1>Financial Ledger</h1>
         <router-view/>
     </div>
 </template>
