@@ -1,6 +1,7 @@
 <template>
     <nav>
         <router-link to="/">Home</router-link>
+        <router-link to="/ledger">Ledger</router-link>
         <a v-if="this.$session.has('id')" @click="logout" class="remove" href="/">Sign out</a>
         <div v-else class="set">
             <router-link to="/signin">Sign in</router-link>
@@ -22,11 +23,13 @@ export default {
 <style>
 
 nav{
-    display: flex;
-    justify-content: center;
+    margin: auto;
 }
 nav a{
     padding: 0 10px;
+}
+nav div{
+    display: inline;
 }
 
 </style>

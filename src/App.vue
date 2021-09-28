@@ -32,22 +32,25 @@ body{
 }
 .ledger_board{
     width: 70%;
-    min-width: 850px;
     padding: 0;
     list-style: none;
     margin: auto;
     text-align: center;
 }
 .firstline,
-#ledger{
+.ledger{
     display: flex;
     justify-content: center;
     border-bottom: 1px solid #000;
 }
 .firstline div,
-#ledger div{
+.ledger div{
     padding: 10px 20px;
     flex: 1;
+}
+.firstline div:nth-child(3),
+.ledger div:nth-child(3){
+    flex: 2;
 }
 p{
     margin: 0;

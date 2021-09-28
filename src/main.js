@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueSession from "vue-session";
 import App from './App.vue'
-import router from "./router/routes.js";
+import router from "./router/routes";
 var options = {
     persist: true
 }

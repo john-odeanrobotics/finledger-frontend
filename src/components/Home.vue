@@ -1,17 +1,13 @@
 <template>
     <div id="home">
-        <LedgerBoard/>
+        <h2>Welcome!</h2>
     </div>
 </template>
 
 <script>
-import LedgerBoard from "./LedgerBoard.vue";
 
 export default {
     name: "Home",
-    components: {
-        LedgerBoard
-    },
 }
 </script>
 

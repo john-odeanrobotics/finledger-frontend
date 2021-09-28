@@ -1,37 +1,42 @@
 <template>
-    <div id="signin">
-        <label for="uid">User ID</label>
-        <input type="text" name="uid" id="uid">
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password">
-        <input @click="signinSubmit" @keyup.enter="signinSubmit" type="button" value="sign in">
+    <div id="signin" v-on:submit.prevent="signinSubmit">
+        <form>
+            <label for="uid">User ID</label>
+            <input type="text" name="uid" id="uid">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password">
+            <input type="submit" value="sign in" id="submit">
+        </form>
         <p class="signinFailed"></p>
     </div>
 </template>
 
 <script>
 import axios from "axios";
-const BaseUrl = "http://localhost:8080/api";
-let uidInput;
-let pwInput;
-let signinFailed;
+const BaseUrl = "http://10.10.90.170:8080/api";
 
 export default {
     name: "SigninForm",
     mounted () {
         this.getInputElement();
     },
+    data() {
+        return{
+            uid: "",
+            password: "",
+            signinFailed: ""
+        }
+    },
     methods: {
         getInputElement() {
-            uidInput = document.querySelector("#uid");
-            pwInput = document.querySelector("#password");
-            signinFailed = document.querySelector(".signinFailed");
-            console.log(uidInput, pwInput, signinFailed)
+            this.uid = document.querySelector("#uid");
+            this.password = document.querySelector("#password");
+            this.signinFailed = document.querySelector(".signinFailed");
         },
         async signinSubmit() {
             const res = await axios.post(`${BaseUrl}/user/signin`, {
-                uid: uidInput.value,
-                password: pwInput.value
+                uid: this.uid.value,
+                password: this.password.value
             });
             const id = await res.data.id;
             const uid = await res.data.uid;
@@ -42,10 +47,10 @@ export default {
             if (hasId) {
                 location.href = "/";
             } else {
-                signinFailed.innerText = "User ID or Password is incorrect.";
-                uidInput.value = "";
-                pwInput.value = "";
-                uidInput.focus();
+                this.signinFailed.innerText = "User ID or Password is incorrect.";
+                this.uid.value = "";
+                this.password.value = "";
+                this.uid.focus();
             }
         }
     }
