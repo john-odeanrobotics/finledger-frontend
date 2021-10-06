@@ -1,10 +1,7 @@
 <template>
-    <div class="ledger">
-        <div>{{ledger.date}}</div>
-        <div>{{ledger.tag}}</div>
-        <div>{{ledger.memo}}</div>
-        <div><p v-if="ledger.isIncome">{{ledger.amount}}</p></div>
-        <div><p v-if="!ledger.isIncome">{{ledger.amount}}</p></div>
+    <div class="mobile_ledger">
+        <div v-bind:style="ledger.isIncome ? 'color: rgb(255, 100, 100);' : 'color: cornflowerblue'">{{ledger.amount}}&#8361;</div>
+        <div><span>{{ledger.tag}}</span><span class="memo">{{ledger.memo}}</span></div>
         <div>
             <button @click="updateLedger">수정</button>
             <button @click="deleteLedger">삭제</button>
@@ -15,11 +12,11 @@
 <script>
 
 export default {
-    name:"Ledger",
+    name:"GroupedLedger",
     props: ["ledger"],
-    methods:{
+    methods: {
         updateLedger() {
-            this.$emit("updateModal", this.ledger);
+            this.$emit("updateLedger", this.ledger);
         },
         deleteLedger() {
             console.log("deleted")

@@ -1,11 +1,15 @@
 <template>
     <div id="signin" v-on:submit.prevent="signinSubmit">
         <form>
-            <label for="uid">User ID</label>
-            <input type="text" name="uid" id="uid">
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password">
-            <input type="submit" value="sign in" id="submit">
+            <p>
+                <label for="uid">User ID</label>
+                <input type="text" name="uid" id="uid" placeholder="Insert User ID">
+            </p>
+            <p>
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" placeholder="Insert Password">
+            </p>
+            <input type="submit" value="sign in" id="signinSubmit">
         </form>
         <p class="signinFailed"></p>
     </div>

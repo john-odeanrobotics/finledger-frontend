@@ -2,7 +2,8 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../components/Home.vue";
 import Signin from "../components/Signin.vue";
-import LedgerBoard from "../components/LedgerBoard";
+import LedgerBoard from "../components/LedgerBoard.vue";
+import Signup from "../components/Signup.vue";
 
 Vue.use(VueRouter);
 const routes = [
@@ -20,7 +21,12 @@ const routes = [
         path: "/ledger",
         name: "ledger",
         component: LedgerBoard
-    }
+    },
+    {
+        path: "/signup",
+        name: "signup",
+        component: Signup
+    },
 ];
 
 const router = new VueRouter({

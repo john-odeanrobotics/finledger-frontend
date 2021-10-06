@@ -1,6 +1,7 @@
 <template>
     <div class="modal">
         <div class="modal-content" v-on:submit.prevent="createSubmit">
+            <font-awesome-icon :icon="['fas','angle-left']" class="back" @click="cancel"/>
             <form>
                 <p>
                     <input type="hidden" id="ledgerId">
@@ -16,15 +17,15 @@
                 </p>
                 <p>
                     <label for="tag">태그</label>
-                    <input type="text" name="tag" id="tag">
+                    <input type="text" name="tag" id="tag" placeholder="insert Tag">
                 </p>
                 <p>
                     <label for="amount">금액</label>
-                    <input type="number" name="amount" id="amount">
+                    <input type="number" name="amount" id="amount" placeholder="insert Amount">
                 </p>
                 <p>
                     <label for="memo">메모</label>
-                    <textarea type="text" name="memo" id="memo"></textarea>
+                    <textarea type="text" name="memo" id="memo" placeholder="insert Memo"></textarea>
                 </p>
                 <div class="buttons">
                     <button type="submit">기입</button>
@@ -45,6 +46,7 @@ export default {
     mounted() {
         this.getInputElement();
         this.resetValues();
+        this.cancel();
     },
     data() { 
         return{
@@ -84,8 +86,8 @@ export default {
             }
             const check = confirm("입력한 내용을 저장하시겠습니까?");
             if (check) {
-                const res = await axios.post(`${BaseUrl}/ledger`, object);
-                console.log(res);
+                await axios.post(`${BaseUrl}/ledger`, object);
+                this.$emit("syncLedger");
                 location.href = "/ledger";
             } 
         },
@@ -101,8 +103,8 @@ export default {
             }
             const check = confirm("입력한 내용을 저장하시겠습니까?");
             if (check) {
-                const res = await axios.post(`${BaseUrl}/ledger/update/${ledgerId}`, object);
-                console.log(res);
+                await axios.post(`${BaseUrl}/ledger/update/${ledgerId}`, object);
+                this.$emit("syncLedger");
                 location.href = "/ledger";
             } 
         },
@@ -116,7 +118,7 @@ export default {
 
 <style>
 .modal{
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     background-color: rgba(0, 0, 0, 0.7);
@@ -127,10 +129,11 @@ export default {
 .modal-content{
     width: 80%;
     height: 80%;
+    min-height: 525px;
     background-color: #fff;
     position: absolute;
     box-sizing: border-box;
-    padding: 50px;
+    padding: 30px;
     border-radius: 20px;
     top: 50%;
     left: 50%;
@@ -146,6 +149,7 @@ export default {
     flex-direction: column;
     font-size: 20px;
     width: 50%;
+    min-width: 200px;
 }
 .modal-content form p{
     padding: 20px;
@@ -153,18 +157,25 @@ export default {
     justify-content: space-between;
     border-bottom: 1px solid #000;
 }
+.modal-content form label{
+    width: 50%;
+    text-align: left;
+}
 .modal-content form input{
-    width: 40%;
+    width: 50%;
+    margin: auto;
     height: 30px;
     font-size: 20px;
 }
 .modal-content form textarea{
-    width: 40%;
-    height: 30px;
+    margin: auto;
+    width: 50%;
     font-size: 20px;
+    resize: none;
 }
 .modal-content form select{
-    width: 40%;
+    margin: auto;
+    width: 50%;
     height: 30px;
     font-size: 20px;
 }
@@ -182,5 +193,13 @@ export default {
 }
 .modal-content form button:hover{
     opacity: 0.8;
+}
+.back{
+    font-size: 42px;
+    position: absolute;
+    top: 15%;
+    left: 18%;
+    color: teal;
+    display: none;
 }
 </style>
